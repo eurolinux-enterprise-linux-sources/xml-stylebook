@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ENTITY xslt4j "Xalan-Java">
+<!ENTITY xml4j "Xerces-Java">
+<!ENTITY xslt4c "Xalan-C++">
+<!ENTITY xml4c "Xerces-C++">
+<!ENTITY resources SYSTEM "sbk:/sources/xalan/resources.xml">
+<!ENTITY done SYSTEM "DONE">
+<!ENTITY status SYSTEM "STATUS">
+<!ENTITY bugs SYSTEM "BUGS">
+
+<!ENTITY % blocksEntity SYSTEM "blocks1.ent">
+%blocksEntity;
+
+
+<!ELEMENT s1 (resources?,(s2|%blocks;)*)*>
+<!ELEMENT s2 (s3|%blocks;)*>
+<!ELEMENT s3 (s4|%blocks;)*>
+<!ELEMENT s4 (%blocks;)*>
+
+
+<!ATTLIST s1 title CDATA #REQUIRED>
+<!ATTLIST s2 title CDATA #REQUIRED>
+<!ATTLIST s3 title CDATA #REQUIRED>
+<!ATTLIST s4 title CDATA #REQUIRED>
+
+<!ELEMENT resources (resource|human-resource)+>
+<!ELEMENT resource EMPTY>
+<!ATTLIST resource 		id ID #IMPLIED
+				name CDATA #IMPLIED
+				long-title CDATA #IMPLIED
+				name-is-abrev CDATA #IMPLIED
+				location CDATA #IMPLIED>
+<!ELEMENT human-resource (#PCDATA)>
+<!ATTLIST human-resource 	id ID #IMPLIED
+				name CDATA #IMPLIED
+				short-name CDATA #IMPLIED
+				mailto CDATA #IMPLIED>
+        
+

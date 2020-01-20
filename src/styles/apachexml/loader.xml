@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<!-- CVS $Revision: 313219 $ $Date: 1999-12-01 15:26:14 +0100 (Wed, 01 Dec 1999) $ -->
+
+<loader>
+  <processor name="xslt">
+    <parameter name="stylesheet" value="sbk:/style/stylesheets/book2project.xsl"/>
+  </processor>
+</loader>

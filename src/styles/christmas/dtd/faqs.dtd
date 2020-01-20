@@ -1,0 +1,19 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- STYLEBOOK FAQS DTD -->
+
+<!-- import the external blocks.ent dtd -->
+<!ENTITY % blocksEntity SYSTEM "blocks.ent">
+%blocksEntity;
+
+<!ELEMENT faqs (faq)+>
+<!ATTLIST faqs title CDATA #REQUIRED>
+
+<!ELEMENT faq (q,a)>
+<!ATTLIST faq title CDATA #IMPLIED>
+
+
+<!ELEMENT q (#PCDATA)>
+<!ELEMENT a (%blocks;)+>
+
+<!-- CVS $Revision: 313243 $ $Date: 1999-12-25 09:29:50 +0100 (Sat, 25 Dec 1999) $ -->

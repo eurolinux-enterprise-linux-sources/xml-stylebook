@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- LINKS ENTITY -->
+
+<!ENTITY % links "link|anchor|jump|img|section-ref|resource-ref|human-resource-ref">
+
+<!ELEMENT anchor EMPTY>
+<!ATTLIST anchor id NMTOKEN #REQUIRED>
+
+<!ELEMENT img EMPTY>
+<!ATTLIST img src CDATA #REQUIRED>
+
+<!ELEMENT link (#PCDATA|img)*>
+<!ATTLIST link idref CDATA #REQUIRED
+               anchor CDATA #IMPLIED
+               target CDATA "_self">
+
+<!ELEMENT jump (#PCDATA|img)*>
+<!ATTLIST jump href CDATA #REQUIRED>
+
+<!-- cross-reference elements -->
+<!ELEMENT section-ref 		EMPTY>
+<!ATTLIST section-ref 		idref IDREF #REQUIRED>
+<!ELEMENT resource-ref 		EMPTY>
+<!ATTLIST resource-ref 		idref IDREF #REQUIRED
+				use-short CDATA #IMPLIED>
+<!ELEMENT human-resource-ref 	EMPTY>
+<!ATTLIST human-resource-ref 	 idref IDREF #REQUIRED>
+

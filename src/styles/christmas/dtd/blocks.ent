@@ -1,0 +1,37 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- BLOCKS ENTITY -->
+<!ENTITY % blocks "p|note|ul|ol|table|source|anchor">
+
+<!-- import the external markup.ent dtd -->
+<!ENTITY % markupEntity SYSTEM "markup.ent">
+%markupEntity;
+
+<!ENTITY % content "(#PCDATA|%markup;|%links;)*">
+
+<!ELEMENT p %content;>
+<!ELEMENT note %content;>
+
+<!ELEMENT ul (li|ol|ul)+>
+<!ELEMENT ol (li|ol|ul)+>
+<!ELEMENT li %content;>
+
+<!ELEMENT source (#PCDATA)>
+
+<!ELEMENT table (tr)+>
+
+<!ELEMENT tr (tn|th|td)+>
+
+<!ELEMENT tn EMPTY>
+<!ATTLIST tn colspan CDATA "1"
+             rowspan CDATA "1">
+
+<!ELEMENT th %content;>
+<!ATTLIST th colspan CDATA "1"
+             rowspan CDATA "1">
+
+<!ELEMENT td %content;>
+<!ATTLIST td colspan CDATA "1"
+             rowspan CDATA "1">
+
+<!-- CVS $Revision: 313243 $ $Date: 1999-12-25 09:29:50 +0100 (Sat, 25 Dec 1999) $ -->

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE engine SYSTEM "res:/org/apache/stylebook/data/loader.dtd">
+
+<!-- LOADER CONFIGURATION: When the project file specified on the command line
+                           is loaded this is passed to a serie of processor
+                           wich will translate it into the format specified
+                           by "project.dtd". This file is only an example since
+                           the loader configuration is by default located at
+                           "sbk:/style/loader.xml" and packaged with the style
+                           you want to use.
+                           See "loader.dtd" for informations. -->
+
+<loader>
+    <processor name="xslt"/>
+</loader>
+
+<!-- CVS $Revision: 313213 $ $Date: 1999-12-01 14:29:28 +0100 (Wed, 01 Dec 1999) $ -->

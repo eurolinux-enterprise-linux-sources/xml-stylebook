@@ -1,0 +1,38 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- ENGINE DTD: Specifies how the engine configuration file should
+                 be formatted. Reference it as
+                 SYSTEM "res:/org/apache/stylebook/data/engine.dtd" -->
+
+<!-- engine: the root element of the configuration file -->
+<!ELEMENT engine (debug?, parser, producer*, processor*, printer*)>
+
+<!-- debug: enable or disable output of debug information -->
+<!ELEMENT debug EMPTY>
+<!ATTLIST debug enabled (true|false) "false">
+
+<!-- parser: define the parser class used by stylebook -->
+<!ELEMENT parser (parameter)*>
+<!ATTLIST parser class CDATA #REQUIRED>
+
+<!-- producer: associate a class with a producer name -->
+<!ELEMENT producer (parameter)*>
+<!ATTLIST producer name  CDATA #REQUIRED
+                   class CDATA #REQUIRED>
+
+<!-- processor: associate a class with a processor name -->
+<!ELEMENT processor (parameter)*>
+<!ATTLIST processor name  CDATA #REQUIRED
+                    class CDATA #REQUIRED>
+
+<!-- printer: associate a class with a printer name -->
+<!ELEMENT printer (parameter)*>
+<!ATTLIST printer name  CDATA #REQUIRED
+                  class CDATA #REQUIRED>
+
+<!-- parameter: a parameter passed to a class during initialiation -->
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter name  CDATA #REQUIRED
+                    value CDATA #REQUIRED>
+
+<!-- CVS $Revision: 313209 $ $Date: 1999-12-01 13:52:36 +0100 (Wed, 01 Dec 1999) $ -->

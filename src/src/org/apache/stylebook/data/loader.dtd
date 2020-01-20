@@ -1,0 +1,19 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- LOADER DTD: Defines how the StyleBook project source file should be
+                 processed to be rendered as defined in project.dtd
+                 SYSTEM "res:/org/apache/stylebook/data/loader.dtd" -->
+
+<!-- loader: the root element of the loader configuration file -->
+<!ELEMENT engine (processor*)>
+
+<!-- processor: process the source document using this processor -->
+<!ELEMENT processor (parameter)*>
+<!ATTLIST processor name  CDATA #REQUIRED>
+
+<!-- parameter: a parameter passed to a processor during translation -->
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter name  CDATA #REQUIRED
+                    value CDATA #REQUIRED>
+
+<!-- CVS $Revision: 313209 $ $Date: 1999-12-01 13:52:36 +0100 (Wed, 01 Dec 1999) $ -->

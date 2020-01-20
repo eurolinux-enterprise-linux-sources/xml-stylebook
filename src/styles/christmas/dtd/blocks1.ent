@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- BLOCKS ENTITY -->
+
+<!ENTITY % blocks "p|note|ul|ol|gloss|table|source|anchor">
+
+<!ENTITY % markupEntity SYSTEM "markup1.ent">
+%markupEntity;
+
+<!ENTITY % content "(#PCDATA|%markup;|%links;|p|important)*"> 
+
+<!ELEMENT p (#PCDATA|%markup;|%links;|note|important)*> 
+<!ELEMENT note %content;>
+<!ELEMENT ul (li|ol|ul)+>
+<!ELEMENT ol (li|ol|ul)+>
+<!ELEMENT table (tr)+>
+<!ELEMENT source (#PCDATA)>
+<!ELEMENT gloss (label|item)+>
+
+<!ELEMENT label %content;>
+<!ELEMENT item %content;>
+<!ELEMENT important %content;>
+<!ELEMENT li %content;>
+
+<!ELEMENT tr (tn*,(th|td)+)>
+
+<!ELEMENT tn EMPTY>
+<!ATTLIST tn colspan CDATA "1"
+             rowspan CDATA "1"
+             width   CDATA #IMPLIED>
+
+<!ELEMENT th %content;>
+<!ATTLIST th colspan CDATA "1"
+             rowspan CDATA "1"
+             width   CDATA #IMPLIED>
+
+<!ELEMENT td %content;>
+<!ATTLIST td colspan CDATA "1"
+             rowspan CDATA "1"
+             width   CDATA #IMPLIED>

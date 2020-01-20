@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE engine SYSTEM "res:/org/apache/stylebook/data/project.dtd">
+
+<!-- PROJECT EXAMPLE: This is an example of how the project file should look
+                      like after it passed thru the different processors
+                      specified in the loader configuration. -->
+
+<project>
+
+  <!-- this parameter will be visible everywhere -->
+  <parameter name="copyright" value="Apache Software Foundation"/>
+
+
+  <!-- copy the image.jpg file from the style archive to the targets -->
+  <resource source="sbk:/style/image.jpg" target="images/image.jpg"/>
+
+  <!-- copy the photo.jpg file from the sources to the targets -->
+  <resource source="sbk:/sources/photo.jpg" target="images/photo.jpg"/>
+
+  <!-- create the file index.html from the source index.xml -->
+  <create source="sbk:/sources/index.xml" target="index.html"
+          producer="parser" printer="html">
+    <!-- this parameter will be visible creating only this target -->
+    <parameter name="data" value="an unknown value"/>
+    
+    <!-- after production pass the document to the import processor -->
+    <processor name="import"/>
+    
+    <!-- after the document has been managed by the import processor, process
+         it with the xslt processor -->
+    <processor name="xslt">
+      <!-- this parameter is only visible to this processor processing this
+           specific file -->
+      <parameter name="stylesheet" value="sbk:/style/document2html.xsl"/>
+    </processor>
+  </create>
+
+  <!-- process an entry and add the result to this project -->
+  <process source="sbk:/style/resources/" producer="directory">
+    <processor name="xslt">
+      <parameter name="stylesheet" value="sbk:/style/directory2project.xsl"/>
+    </processor>
+  </process>
+
+</project>
+
+<!-- CVS $Revision: 313212 $ $Date: 1999-12-01 14:28:47 +0100 (Wed, 01 Dec 1999) $ -->

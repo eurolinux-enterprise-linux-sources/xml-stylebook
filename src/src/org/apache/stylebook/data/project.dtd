@@ -1,0 +1,57 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- PROJECT DTD: Defines the format of the project file, and in wich format
+                  the loader, after processing the file supplied on the command
+                  line, should instantiate the project. This DTD is not used,
+                  actually, since most of the times the final project is the
+                  result of one or more processing stages, but is given to you
+                  as a reference on how StyleBook expects the project.
+                  SYSTEM "res:/org/apache/stylebook/data/project.dtd" -->
+
+<!-- project: the root element of the project file -->
+<!ELEMENT project (parameter|create|resource|process)*>
+
+<!-- parameter: a parameter passed to the different stages of creation
+                note that parameters are context sensitive -->
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter name  CDATA #REQUIRED
+                    value CDATA #REQUIRED>
+
+<!-- create: create a target file producing it using the specified processor
+             acting on the specified source, processing it thru the different
+             specified processors and printing it to the specified target file
+             using the specified printer
+             note that the target must be an ID (there cannot be two different
+             target names in the document) -->
+<!ELEMENT create (parameter|processor)*>
+<!ATTLIST create target   ID    #REQUIRED
+                 source   CDATA #REQUIRED
+                 producer CDATA #REQUIRED
+                 printer  CDATA #REQUIRED>
+
+<!-- processor: used in creation specifies how a document should be processed
+                before forwarding it to the next stage -->
+<!ELEMENT processor (parameter)*>
+<!ATTLIST processor name  CDATA #REQUIRED>
+
+<!-- resource: specifies a resource or a file that needs to be copied from
+               one place to another -->
+<!ELEMENT resource EMPTY>
+<!ATTLIST resource target   ID    #REQUIRED
+                   source   CDATA #REQUIRED>
+
+<!-- resource: specifies a resource or a file that needs to be copied from
+               one place to another -->
+<!ELEMENT resource EMPTY>
+<!ATTLIST resource target   ID    #REQUIRED
+                   source   CDATA #REQUIRED>
+
+<!-- process: produce and process the specified source as done in creation
+              but instead of printing it add it to the project itself
+              note that the output of the last processing stage must conform
+              to this dtd -->
+<!ELEMENT create (parameter|processor)*>
+<!ATTLIST create source   CDATA #REQUIRED
+                 producer CDATA #REQUIRED>
+
+<!-- CVS $Revision: 313211 $ $Date: 1999-12-01 14:14:25 +0100 (Wed, 01 Dec 1999) $ -->

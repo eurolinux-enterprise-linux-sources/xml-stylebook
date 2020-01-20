@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE engine SYSTEM "res:/org/apache/stylebook/data/engine.dtd">
+
+<!-- ENGINE CONFIGURATION: Configuration for the StyleBook Engine class.
+                           See "engine.dtd" for informations. -->
+
+<engine>
+
+  <debug enabled="false"/>
+
+  <parser class="org.apache.stylebook.parsers.CachingParser">
+    <parameter name="parserclass" value="org.apache.stylebook.parsers.XercesParser"/>
+    <parameter name="cachesize" value="10"/>
+  </parser>
+
+  <producer name="parser" class="org.apache.stylebook.producers.ParserProducer"/>
+  <producer name="context" class="org.apache.stylebook.producers.ContextProducer"/>
+  <producer name="project" class="org.apache.stylebook.producers.ProjectProducer"/>
+  <producer name="directory" class="org.apache.stylebook.producers.DirectoryProducer"/>
+
+  <processor name="null" class="org.apache.stylebook.processors.NullProcessor"/>
+  <processor name="xslt" class="org.apache.stylebook.processors.XalanProcessor"/>
+  <processor name="import" class="org.apache.stylebook.processors.ImportProcessor"/>
+
+  <printer name="xml" class="org.apache.stylebook.printers.XMLPrinter"/>
+  <printer name="html" class="org.apache.stylebook.printers.HTMLPrinter"/>
+  <printer name="image" class="org.apache.stylebook.printers.ImagePrinter"/>
+
+</engine>
+
+<!-- CVS $Revision: 313220 $ $Date: 1999-12-01 19:38:23 +0100 (Wed, 01 Dec 1999) $ -->

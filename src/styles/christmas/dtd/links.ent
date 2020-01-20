@@ -1,0 +1,20 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- LINKS ENTITY -->
+<!ENTITY % links "link|anchor|jump|img">
+
+<!ELEMENT anchor EMPTY>
+<!ATTLIST anchor name NMTOKEN #REQUIRED>
+
+<!ELEMENT img EMPTY>
+<!ATTLIST img src CDATA #REQUIRED
+              alt CDATA #REQUIRED>
+
+<!ELEMENT link (#PCDATA|img)*>
+<!ATTLIST link idref NMTOKEN #IMPLIED
+               anchor CDATA  #IMPLIED>
+
+<!ELEMENT jump (#PCDATA|img)*>
+<!ATTLIST jump href CDATA #REQUIRED>
+
+<!-- CVS $Revision: 313243 $ $Date: 1999-12-25 09:29:50 +0100 (Sat, 25 Dec 1999) $ -->

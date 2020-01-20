@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<!-- ===================================================================
+
+   Build file for Stylebook
+
+Notes:
+   This is a build file for use with the Jakarta Ant java build tool.
+
+Installation Instructions:
+   To install Ant on your system, you need to checkout the
+   "jakarta-tools" CVS module. Then you should place the files
+     - ant.jar
+     - projectx-tr2.jar
+     - javac.jar
+   in your classpath. (XML parser abstraction is currently in
+   the todo list, volunteers welcome!)
+
+Build Instructions:
+   To build, run
+
+     java org.apache.tools.ant.Main
+
+   on the directory where this file is located.
+   
+   Note: See build.bat in this directory for info on setting up your classpath
+   to build Stylebook. If you are using the compile2/package2 option to build
+   a version of Stylebook that works with Xalan-J 2, Xalan-J 2 (NOT Xalan-J 1) must be on the 
+   classpath and an up-to-date version of Xerces-J with javax.xml.parsers must also be on the
+   classpath. 
+      Donald Leslie <donald_leslie@lotus.com> 
+      9-11-00
+
+Authors:
+  Stefano Mazzocchi <stefano@apache.org>
+
+Copyright:
+  Copyright (c) 1999 The Apache Software Foundation.
+
+   $Id: build.xml 313292 2004-12-14 15:54:50Z dims $
+
+==================================================================== -->
+
+<project name="Stylebook" default="package2" basedir=".">
+
+  <target name="init">
+	  <property name="name" value="stylebook"/>
+	  <property name="version" value="1.0-b2"/>
+ 	  <property name="version-xalan-2" value="1.0-b3_xalan-2"/> <!-- Version to use with Xalan-J 2 -->
+
+	  <property name="build.compiler" value="classic"/>
+	  <property name="debug" value="off"/>
+
+	  <property name="build.dir" value="./build"/>
+	  <property name="build.src" value="${build.dir}/src"/>
+	  <property name="build.dest" value="${build.dir}/classes"/>
+	  <property name="src.dir" value="./src"/>
+	  <property name="bin.dir" value="./bin"/>
+      <condition property="sun.codec.present" >
+        <available classname="com.sun.image.codec.jpeg.JPEGCodec"/>
+      </condition>
+  </target>
+
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${build.dest}"/>
+    <copy todir="${build.src}">
+      <fileset dir="${src.dir}"/>
+    </copy>
+  </target>
+  
+  <!-- If compiling version to run with Xalan-J 1, must not include Xalan2Processor in the compile.
+       If compiling version to run with Xalan-J 2, must not include XalanProcessor in the compile. -->
+  
+  <target name="compile" depends="prepare">
+    <javac srcdir="${build.src}" excludes="org/apache/stylebook/processors/Xalan2Processor.java" destdir="${build.dest}" classpath="${classpath}" debug="${debug}"/>
+    <copy todir="${build.dest}/org/apache/stylebook/data">
+      <fileset dir="${build.src}/org/apache/stylebook/data"/>
+    </copy>
+  </target>
+
+  <target name="package" depends="compile">
+    <jar jarfile="${bin.dir}/${name}-${version}.jar" basedir="${build.dest}" includes="org/**"/>
+  </target>
+  
+<!--Compile and Package to work with Xalan-J 2 -->
+  <target name="compile2" depends="prepare">
+    <javac srcdir="${src.dir}" excludes="org/apache/stylebook/processors/XalanProcessor.java" destdir="${build.dest}" debug="${debug}">
+        <exclude name="**/org/apache/stylebook/processors/XalanProcessor.java"/>
+        <exclude name="**/org/apache/stylebook/printers/ImagePrinter.java" unless="sun.codec.present"/>
+    </javac>
+    <copy todir="${build.dest}/org/apache/stylebook/data">
+      <fileset dir="${build.src}/org/apache/stylebook/data"/>
+    </copy>
+  </target>
+  <target name="package2" depends="compile2">
+    <replace file="${build.dest}/org/apache/stylebook/data/engine.xml" token="XalanProcessor" value="Xalan2Processor"/>
+    <jar jarfile="${bin.dir}/${name}-${version-xalan-2}.jar" basedir="${build.dest}" includes="org/**"/>
+  </target>
+
+  <target name="clean">
+    <deltree dir="${build.dir}"/>
+  </target>
+
+</project>

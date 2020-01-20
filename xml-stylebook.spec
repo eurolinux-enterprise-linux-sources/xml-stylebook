@@ -1,6 +1,6 @@
 Name:          xml-stylebook
 Version:       1.0
-Release:       0.13.b3_xalan2.svn313293%{?dist}
+Release:       0.14.b3_xalan2.svn313293%{?dist}
 Summary:       Apache XML Stylebook
 License:       ASL 1.1
 URL:           http://xml.apache.org/
@@ -108,6 +108,9 @@ cp -pr results %{buildroot}%{_datadir}/%{name}
 %{_datadir}/%{name}
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.0-0.14.b3_xalan2.svn313293
+- Mass rebuild 2013-12-27
+
 * Mon Jul 29 2013 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1.0-0.13.b3_xalan2.svn313293
 - Cleanup tarball content with unclear license
 - Update to latest packaging guidelines
